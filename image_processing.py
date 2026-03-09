@@ -19,3 +19,24 @@ plt.axis("off")
 plt.savefig("outputs/original.png", bbox_inches='tight')
 plt.show()
 print("✅ Step 2: Image loaded and displayed.")
+
+
+# ─────────────────────────────────────────────
+# STEP 3a: Rotate the Image
+# Commit: "Added image rotation"
+# ─────────────────────────────────────────────
+
+(h, w) = image.shape[:2]
+center = (w // 2, h // 2)
+angle = 45
+scale = 1.0
+
+rotation_matrix = cv2.getRotationMatrix2D(center, angle, scale)
+rotated_image = cv2.warpAffine(image, rotation_matrix, (w, h))
+
+plt.imshow(cv2.cvtColor(rotated_image, cv2.COLOR_BGR2RGB))
+plt.title("Rotated Image (45°)")
+plt.axis("off")
+plt.savefig("outputs/rotated.png", bbox_inches='tight')
+plt.show()
+print("✅ Step 3a: Image rotated 45°.")
