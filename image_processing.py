@@ -3,20 +3,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 
-os.makedirs("outputs", exist_ok=True)
-
 # ─────────────────────────────────────────────
 # STEP 2: Load and Display an Image
 # Commit: "Added image loading functionality"
 # ─────────────────────────────────────────────
 
-image = cv2.imread('images/sample.jpg')
+# Auto-detect the first image in the images/ folder
+image_files = [f for f in os.listdir('images') if f.lower().endswith(('.jpg', '.jpeg', '.png'))]
+image_path = os.path.join('images', image_files[0])
+print(f"Using image: {image_path}")
+
+image = cv2.imread(image_path)
 image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)  # Convert BGR → RGB for display
 
 plt.imshow(image_rgb)
 plt.title("Original Image")
 plt.axis("off")
-plt.savefig("outputs/original.png", bbox_inches='tight')
 plt.show()
 print("✅ Step 2: Image loaded and displayed.")
 
@@ -37,10 +39,8 @@ rotated_image = cv2.warpAffine(image, rotation_matrix, (w, h))
 plt.imshow(cv2.cvtColor(rotated_image, cv2.COLOR_BGR2RGB))
 plt.title("Rotated Image (45°)")
 plt.axis("off")
-plt.savefig("outputs/rotated.png", bbox_inches='tight')
 plt.show()
 print("✅ Step 3a: Image rotated 45°.")
-
 
 
 # ─────────────────────────────────────────────
@@ -53,11 +53,8 @@ scaled_image = cv2.resize(image, None, fx=1.5, fy=1.5, interpolation=cv2.INTER_L
 plt.imshow(cv2.cvtColor(scaled_image, cv2.COLOR_BGR2RGB))
 plt.title("Scaled Image (1.5x)")
 plt.axis("off")
-plt.savefig("outputs/scaled.png", bbox_inches='tight')
 plt.show()
 print("✅ Step 3b: Image scaled 1.5x.")
-
-
 
 
 # ─────────────────────────────────────────────
@@ -80,6 +77,7 @@ for i, f in enumerate(focal_lengths):
 
 plt.suptitle("Camera Focal Length Simulation", fontsize=13)
 plt.tight_layout()
-plt.savefig("outputs/focal_lengths.png", bbox_inches='tight')
 plt.show()
 print("✅ Step 4: Focal length simulation complete.")
+
+print("\n🎉 All steps done!")

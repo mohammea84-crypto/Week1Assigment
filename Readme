@@ -1,0 +1,15 @@
+# Week 1 – Basic Image Processing
+
+## Setup & Run
+
+```bash
+pip install -r requirements.txt
+```
+
+Add a `sample.jpg` to the `images/` folder, then run:
+
+```bash
+python image_processing.py
+```
+
+Outputs are saved to `outputs/`.
