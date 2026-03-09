@@ -40,3 +40,19 @@ plt.axis("off")
 plt.savefig("outputs/rotated.png", bbox_inches='tight')
 plt.show()
 print("✅ Step 3a: Image rotated 45°.")
+
+
+
+# ─────────────────────────────────────────────
+# STEP 3b: Scale the Image
+# Commit: "Added image scaling"
+# ─────────────────────────────────────────────
+
+scaled_image = cv2.resize(image, None, fx=1.5, fy=1.5, interpolation=cv2.INTER_LINEAR)
+
+plt.imshow(cv2.cvtColor(scaled_image, cv2.COLOR_BGR2RGB))
+plt.title("Scaled Image (1.5x)")
+plt.axis("off")
+plt.savefig("outputs/scaled.png", bbox_inches='tight')
+plt.show()
+print("✅ Step 3b: Image scaled 1.5x.")
