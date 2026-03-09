@@ -56,3 +56,30 @@ plt.axis("off")
 plt.savefig("outputs/scaled.png", bbox_inches='tight')
 plt.show()
 print("✅ Step 3b: Image scaled 1.5x.")
+
+
+
+
+# ─────────────────────────────────────────────
+# STEP 4: Simulate Camera Focal Lengths (3D Vision)
+# Commit: "Added camera focal length simulation"
+# ─────────────────────────────────────────────
+
+focal_lengths = [50, 100, 200]
+
+plt.figure(figsize=(12, 4))
+for i, f in enumerate(focal_lengths):
+    f_matrix = np.array([[f, 0, w // 2],
+                         [0, f, h // 2],
+                         [0,  0,     1]], dtype=np.float32)
+    warped = cv2.warpPerspective(image, f_matrix, (w, h))
+    plt.subplot(1, 3, i + 1)
+    plt.imshow(cv2.cvtColor(warped, cv2.COLOR_BGR2RGB))
+    plt.title(f"Focal Length: {f}")
+    plt.axis("off")
+
+plt.suptitle("Camera Focal Length Simulation", fontsize=13)
+plt.tight_layout()
+plt.savefig("outputs/focal_lengths.png", bbox_inches='tight')
+plt.show()
+print("✅ Step 4: Focal length simulation complete.")
